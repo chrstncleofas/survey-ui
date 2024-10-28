@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment - 01</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Hide the default radio input */
+        input[type="radio"] {
+            display: none;
+        }
+        
+        /* Style for label to make it look like a button */
+        .btn-radio {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            color: #007bff;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 290%; /* Adjust as needed */
+            height: 40px; /* Fixed height */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Active style when selected */
+        input[type="radio"]:checked + .btn-radio {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* Custom card style */
+        .card {
+            border-top: 5px solid darkblue; /* Dark blue border at the top */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid mt-3">
+        <h3 class="mb-3 text-center">Programming Test 01</h3>
+        <form method="post">
+            {% csrf_token %}
+            <!-- Question 1 -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h6 class="card-title">1. {{ form.question1.label }}</h6>
+                    <div class="row" style="gap: 170px;">  <!-- Adjust gap as needed -->
+                        {% for choice, label in form.question1.field.choices %}
+                            <div class="col-1">
+                                <input type="radio" id="question1_{{ choice }}" name="question1" value="{{ choice }}" {% if form.question1.value == choice %}checked{% endif %}>
+                                <label for="question1_{{ choice }}" class="btn-radio">{{ label }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h6 class="card-title">2. {{ form.question2.label }}</h6>
+                    <div class="row" style="gap: 170px;">  <!-- Adjust gap as needed -->
+                        {% for choice, label in form.question2.field.choices %}
+                            <div class="col-1">
+                                <input type="radio" id="question2_{{ choice }}" name="question2" value="{{ choice }}" {% if form.question2.value == choice %}checked{% endif %}>
+                                <label for="question2_{{ choice }}" class="btn-radio">{{ label }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h6 class="card-title">3. {{ form.question3.label }}</h6>
+                    <div class="row" style="gap: 170px;">  <!-- Adjust gap as needed -->
+                        {% for choice, label in form.question3.field.choices %}
+                            <div class="col-1">
+                                <input type="radio" id="question3_{{ choice }}" name="question3" value="{{ choice }}" {% if form.question3.value == choice %}checked{% endif %}>
+                                <label for="question3_{{ choice }}" class="btn-radio">{{ label }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">SUBMIT</button>
+        </form>
+    </div>
+</body>
+</html>
